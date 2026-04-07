@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ProAccounts – GST | Billing | Accounting Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    :root{
+      --primary:#1a56db;
+      --primary-dark:#1341a8;
+      --accent:#f59e0b;
+      --dark:#0f172a;
+      --light:#f8fafc;
+      --text:#334155;
+      --muted:#64748b;
+      --border:#e2e8f0;
+      --card:#ffffff;
+      --grad:linear-gradient(135deg,#1a56db 0%,#0ea5e9 100%);
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--light);}
+
+    /* ===== NAVBAR ===== */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:1000;
+      background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);
+      box-shadow:0 2px 20px rgba(0,0,0,0.08);
+      padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:70px;
+    }
+    .logo{display:flex;align-items:center;gap:10px;}
+    .logo-icon{
+      width:42px;height:42px;background:var(--grad);border-radius:10px;
+      display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;font-weight:700;
+    }
+    .logo-text{font-size:1.4rem;font-weight:700;color:var(--dark);}
+    .logo-text span{color:var(--primary);}
+    .nav-links{display:flex;gap:28px;list-style:none;}
+    .nav-links a{text-decoration:none;color:var(--text);font-weight:500;font-size:0.92rem;transition:color .3s;}
+    .nav-links a:hover{color:var(--primary);}
+    .nav-cta{
+      background:var(--grad);color:#fff;border:none;padding:10px 24px;
+      border-radius:8px;font-weight:600;font-size:0.9rem;cursor:pointer;transition:transform .2s,box-shadow .2s;
+    }
+    .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(26,86,219,0.35);}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+    .hamburger span{width:25px;height:2.5px;background:var(--dark);border-radius:2px;}
+
+    /* ===== HERO ===== */
+    .hero{
+      min-height:100vh;
+      background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 50%,#1a56db 100%);
+      display:flex;align-items:center;justify-content:center;
+      text-align:center;padding:120px 5% 80px;position:relative;overflow:hidden;
+    }
+    .hero::before{
+      content:'';position:absolute;inset:0;
+      background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-badge{
+      display:inline-block;background:rgba(245,158,11,0.2);
+      border:1px solid rgba(245,158,11,0.4);
+      color:#fbbf24;padding:6px 18px;border-radius:50px;
+      font-size:0.82rem;font-weight:600;letter-spacing:1px;
+      text-transform:uppercase;margin-bottom:24px;
+    }
+    .hero h1{
+      font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;color:#fff;
+      line-height:1.15;margin-bottom:22px;
+    }
+    .hero h1 span{
+      background:linear-gradient(90deg,#fbbf24,#f59e0b);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .hero p{
+      font-size:clamp(1rem,2vw,1.18rem);color:rgba(255,255,255,0.78);
+      max-width:680px;margin:0 auto 38px;line-height:1.8;
+    }
+    .hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+    .btn-primary{
+      background:var(--grad);color:#fff;padding:14px 32px;
+      border-radius:10px;font-weight:600;font-size:1rem;
+      text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+      transition:transform .2s,box-shadow .2s;
+    }
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(26,86,219,0.45);}
+    .btn-outline{
+      border:2px solid rgba(255,255,255,0.5);color:#fff;padding:14px 32px;
+      border-radius:10px;font-weight:600;font-size:1rem;
+      text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+      transition:all .2s;
+    }
+    .btn-outline:hover{background:rgba(255,255,255,0.1);border-color:#fff;}
+    .hero-stats{
+      display:flex;gap:40px;justify-content:center;flex-wrap:wrap;margin-top:60px;
+    }
+    .stat{text-align:center;}
+    .stat-num{font-size:2rem;font-weight:800;color:#fbbf24;}
+    .stat-label{font-size:0.82rem;color:rgba(255,255,255,0.65);margin-top:4px;}
+
+    /* ===== SECTION COMMON ===== */
+    section{padding:90px 5%;}
+    .section-tag{
+      display:inline-block;background:#eff6ff;color:var(--primary);
+      border-radius:50px;padding:6px 18px;font-size:0.8rem;font-weight:600;
+      text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;
+    }
+    .section-title{font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:700;color:var(--dark);margin-bottom:14px;}
+    .section-sub{color:var(--muted);font-size:1rem;max-width:600px;margin:0 auto 55px;line-height:1.7;}
+    .text-center{text-align:center;}
+
+    /* ===== SERVICES ===== */
+    #services{background:#fff;}
+    .services-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;
+    }
+    .service-card{
+      background:var(--light);border:1px solid var(--border);
+      border-radius:16px;padding:32px 28px;
+      transition:transform .3s,box-shadow .3s,border-color .3s;
+      position:relative;overflow:hidden;
+    }
+    .service-card::after{
+      content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+      background:var(--grad);transform:scaleX(0);transition:transform .3s;transform-origin:left;
+    }
+    .service-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,0.1);border-color:var(--primary);}
+    .service-card:hover::after{transform:scaleX(1);}
+    .service-icon{
+      width:58px;height:58px;border-radius:14px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.5rem;margin-bottom:20px;
+    }
+    .service-card h3{font-size:1.12rem;font-weight:700;color:var(--dark);margin-bottom:10px;}
+    .service-card p{color:var(--muted);font-size:0.9rem;line-height:1.7;}
+    .service-card ul{margin-top:14px;padding-left:0;list-style:none;}
+    .service-card ul li{
+      font-size:0.87rem;color:var(--text);padding:4px 0;
+      display:flex;align-items:center;gap:8px;
+    }
+    .service-card ul li::before{content:'✓';color:var(--primary);font-weight:700;}
+
+    /* ===== WHY US ===== */
+    #why{background:linear-gradient(135deg,#0f172a,#1e3a8a);color:#fff;}
+    #why .section-tag{background:rgba(245,158,11,0.2);color:#fbbf24;}
+    #why .section-title{color:#fff;}
+    #why .section-sub{color:rgba(255,255,255,0.65);}
+    .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;}
+    .why-card{
+      background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
+      border-radius:16px;padding:28px 24px;text-align:center;
+      transition:background .3s;
+    }
+    .why-card:hover{background:rgba(255,255,255,0.12);}
+    .why-icon{font-size:2.2rem;margin-bottom:16px;}
+    .why-card h3{font-size:1.05rem;font-weight:600;margin-bottom:8px;}
+    .why-card p{font-size:0.87rem;color:rgba(255,255,255,0.65);line-height:1.65;}
+
+    /* ===== PROCESS ===== */
+    #process{background:var(--light);}
+    .process-steps{display:flex;flex-direction:column;gap:0;max-width:800px;margin:0 auto;}
+    .step{display:flex;gap:24px;align-items:flex-start;padding:28px 0;position:relative;}
+    .step:not(:last-child)::after{
+      content:'';position:absolute;left:24px;top:70px;bottom:0;
+      width:2px;background:var(--border);
+    }
+    .step-num{
+      min-width:50px;height:50px;border-radius:50%;
+      background:var(--grad);color:#fff;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;font-size:1.1rem;flex-shrink:0;
+      box-shadow:0 4px 14px rgba(26,86,219,0.3);
+    }
+    .step-content h3{font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:6px;}
+    .step-content p{color:var(--muted);font-size:0.9rem;line-height:1.65;}
+
+    /* ===== TESTIMONIALS ===== */
+    #testimonials{background:#fff;}
+    .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;}
+    .testi-card{
+      background:var(--light);border:1px solid var(--border);border-radius:16px;padding:30px 26px;
+    }
+    .stars{color:#f59e0b;font-size:1rem;margin-bottom:14px;}
+    .testi-card p{color:var(--text);font-size:0.92rem;line-height:1.75;font-style:italic;margin-bottom:20px;}
+    .testi-author{display:flex;align-items:center;gap:12px;}
+    .testi-avatar{
+      width:44px;height:44px;border-radius:50%;background:var(--grad);
+      display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem;
+    }
+    .testi-name{font-weight:600;font-size:0.9rem;color:var(--dark);}
+    .testi-role{font-size:0.8rem;color:var(--muted);}
+
+    /* ===== CONTACT ===== */
+    #contact{background:linear-gradient(135deg,#f0f9ff,#e0f2fe);}
+    .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;}
+    .contact-info h2{font-size:1.8rem;font-weight:700;color:var(--dark);margin-bottom:16px;}
+    .contact-info p{color:var(--muted);line-height:1.75;margin-bottom:28px;}
+    .info-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:22px;}
+    .info-icon{
+      width:44px;height:44px;min-width:44px;border-radius:10px;background:var(--grad);
+      display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;
+    }
+    .info-label{font-size:0.8rem;color:var(--muted);font-weight:500;}
+    .info-val{font-size:0.95rem;font-weight:600;color:var(--dark);}
+    .contact-form{
+      background:#fff;border-radius:20px;padding:38px;
+      box-shadow:0 10px 40px rgba(0,0,0,0.08);
+    }
+    .contact-form h3{font-size:1.3rem;font-weight:700;color:var(--dark);margin-bottom:24px;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .form-group{margin-bottom:18px;}
+    .form-group label{display:block;font-size:0.85rem;font-weight:600;color:var(--dark);margin-bottom:7px;}
+    .form-group input,.form-group select,.form-group textarea{
+      width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;
+      font-family:'Poppins',sans-serif;font-size:0.9rem;color:var(--text);
+      transition:border-color .3s,box-shadow .3s;outline:none;background:#fafafa;
+    }
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+      border-color:var(--primary);box-shadow:0 0 0 3px rgba(26,86,219,0.1);background:#fff;
+    }
+    .form-group textarea{resize:vertical;min-height:110px;}
+    .submit-btn{
+      width:100%;background:var(--grad);color:#fff;border:none;padding:14px;
+      border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer;
+      transition:transform .2s,box-shadow .2s;font-family:'Poppins',sans-serif;
+    }
+    .submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,86,219,0.35);}
+    .success-msg{
+      display:none;background:#dcfce7;border:1px solid #86efac;border-radius:10px;
+      padding:14px 18px;color:#166534;font-size:0.9rem;font-weight:500;margin-top:14px;text-align:center;
+    }
+
+    /* ===== FOOTER ===== */
+    footer{background:var(--dark);color:rgba(255,255,255,0.8);padding:60px 5% 30px;}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:50px;}
+    .footer-brand .logo-text{color:#fff;}
+    .footer-brand p{font-size:0.88rem;color:rgba(255,255,255,0.55);line-height:1.7;margin-top:14px;}
+    .footer-social{display:flex;gap:12px;margin-top:20px;}
+    .footer-social a{
+      width:36px;height:36px;border-radius:8px;
+      background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;
+      color:rgba(255,255,255,0.7);text-decoration:none;transition:background .3s;font-size:0.9rem;
+    }
+    .footer-social a:hover{background:var(--primary);}
+    .footer-col h4{font-size:0.95rem;font-weight:600;color:#fff;margin-bottom:18px;}
+    .footer-col ul{list-style:none;}
+    .footer-col ul li{margin-bottom:10px;}
+    .footer-col ul li a{
+      text-decoration:none;color:rgba(255,255,255,0.55);
+      font-size:0.87rem;transition:color .3s;
+    }
+    .footer-col ul li a:hover{color:#fff;}
+    .footer-bottom{
+      border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;
+      display:flex;align-items:center;justify-content:space-between;flex-wrap:gap;
+    }
+    .footer-bottom p{font-size:0.83rem;color:rgba(255,255,255,0.4);}
+
+    /* ===== FLOATING WHATSAPP ===== */
+    .whatsapp-float{
+      position:fixed;bottom:28px;right:28px;z-index:999;
+      width:58px;height:58px;border-radius:50%;background:#25d366;
+      display:flex;align-items:center;justify-content:center;
+      color:#fff;font-size:1.6rem;text-decoration:none;
+      box-shadow:0 6px 20px rgba(37,211,102,0.45);
+      animation:pulse 2s infinite;
+    }
+    @keyframes pulse{0%,100%{box-shadow:0 6px 20px rgba(37,211,102,0.45);}50%{box-shadow:0 6px 30px rgba(37,211,102,0.75),0 0 0 10px rgba(37,211,102,0.1);}}
+
+    /* ===== MOBILE ===== */
+    @media(max-width:768px){
+      .nav-links,.nav-cta{display:none;}
+      .hamburger{display:flex;}
+      .contact-wrap{grid-template-columns:1fr;}
+      .footer-grid{grid-template-columns:1fr 1fr;}
+      .form-row{grid-template-columns:1fr;}
+    }
+    @media(max-width:480px){
+      .footer-grid{grid-template-columns:1fr;}
+    }
+
+    /* ===== SCROLL ANIMATION ===== */
+    .fade-up{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease;}
+    .fade-up.visible{opacity:1;transform:translateY(0);}
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">
+    <div class="logo-icon">₹</div>
+    <span class="logo-text">Pro<span>Accounts</span></span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Free Consultation</button>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-badge">✦ Trusted Accounting Partner</div>
+    <h1>Complete Accounting &<br/><span>Financial Solutions</span></h1>
+    <p>GST Filing • Excel Accounting • Billing • E-Way Bill • Project Reports • RA Billing — Sab kuch ek jagah. Professional, accurate aur fast service.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary"><i class="fas fa-calendar-check"></i> Free Consultation</a>
+      <a href="#services" class="btn-outline"><i class="fas fa-arrow-down"></i> Our Services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Happy Clients</div></div>
+      <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Years Experience</div></div>
+      <div class="stat"><div class="stat-num">99%</div><div class="stat-label">Accuracy Rate</div></div>
+      <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Support</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="text-center">
+    <span class="section-tag">Our Services</span>
+    <h2 class="section-title">Comprehensive Accounting Services</h2>
+    <p class="section-sub">Aapke business ki har zaroorat ke liye – expert financial services at affordable prices.</p>
+  </div>
+
+  <div class="services-grid">
+
+    <!-- GST -->
+    <div class="service-card fade-up">
+      <div class="service-icon" style="background:#eff6ff;color:#1a56db;"><i class="fas fa-file-invoice"></i></div>
+      <h3>GST Services</h3>
+      <p>Complete GST registration, return filing, and reconciliation services for your business.</p>
+      <ul>
+        <li>GST Registration & Amendment</li>
+        <li>GSTR-1, 3B Monthly Filing</li>
+        <li>GST Reconciliation & Audit</li>
+        <li>Input Tax Credit (ITC) Management</li>
+        <li>GST Notice Reply & Compliance</li>
+      </ul>
+    </div>
+
+    <!-- Excel Accounting -->
+    <div class="service-card fade-up">
+      <div class="service-icon" style="background:#f0fdf4;color:#16a34a;"><i class="fas fa-table"></i></div>
+      <h3>Excel Accounting</h3>
+      <p>Custom Excel-based bookkeeping & account management tailored to your business needs.</p>
+      <ul>
+        <li>Daily Transaction Bookkeeping</li>
+        <li>Trial Balance & Ledgers</li>
+        <li>P&L and Balance Sheet</li>
+        <li>Custom Excel Templates</li>
+        <li>MIS Reports</li>
+      </ul>
+    </div>
+
+    <!-- Billing -->
+    <div class="service-card fade-up">
+      <div class="service-icon" style="background:#fffbeb;color:#d97706;"><i class="fas fa-receipt"></i></div>
+      <h3>Billing Services</h3>
+      <p>Professional invoice and billing management with GST compliance and accuracy.</p>
+      <ul>
+        <li>GST Tax Invoice Generation</li>
+        <li>Proforma & Credit Note</li>
+        <li>Debit Note Management</li>
+        <li>Customer Billing Statements</li>
+        <li>Outstanding Payment Tracking</li>
+      </ul>
+    </div>
+
+    <!-- E-Way Bill -->
+    <div class="service-card fade-up">
+      <div class="service-icon" style="background:#fdf4ff;color:#9333ea;"><i class="fas fa-truck"></i></div>
+      <h3>E-Way Bill</h3>
+      <p>Hassle-free E-Way Bill generation and management for all your goods transportation needs.</p>
+      <ul>
+        <li>E-Way Bill Generation (Part A & B)</li>
+        <li>Bulk E-Way Bill Processing</li>
+        <li>E-Way Bill Extension & Cancellation</li>
+        <li>Vehicle Number Update</li>
+        <li>Movement Report & Tracking</li>
+      </ul>
+    </div>
+
+    <!-- Project Management Report -->
+    <div class="service-card fade-up">
+      <div class="service-icon" style="background:#fff1f2;color:#e11d48;"><i class="fas fa-chart-bar"></i></div>
+      <h3>Project Management Report</h3>
+      <p>Detailed project financial reports to track budgets, expenses, and profitability.</p>
+      <ul>
+        <li>Project Cost Analysis</li>
+        <li>Budget vs Actual Report</li>
+        <li>Work Progress Billing</li>
+        <li>Resource Utilization Report</li>
+        <li>Project P&L Statement</li>
+      </ul>
+    </div>
+
+    <!-- RA Billing -->
+    <div class="service-card fade-up">
+      <div class="service-icon" style="background:#ecfeff;color:#0891b2;"><i class="fas fa-hard-hat"></i></div>
+      <h3>RA Billing</h3>
+      <p>Running Account (RA) Billing for construction and infrastructure projects – precise & timely.</p>
+      <ul>
+        <li>Measurement Sheet Preparation</li>
+        <li>RA Bill Submission & Tracking</li>
+        <li>BOQ vs Executed Quantity</li>
+        <li>Retention & Security Deposit</li>
+        <li>Final Bill & Reconciliation</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="text-center">
+    <span class="section-tag">Why Choose Us</span>
+    <h2 class="section-title">Aap Hum Par Kyun Bharosa Kar Sakte Hain</h2>
+    <p class="section-sub">Professional expertise combined with personalized attention for every client.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card fade-up">
+      <div class="why-icon">🎯</div>
+      <h3>100% Accuracy</h3>
+      <p>Har ek calculation double-checked aur verified. Zero error policy.</p>
+    </div>
+    <div class="why-card fade-up">
+      <div class="why-icon">⚡</div>
+      <h3>Fast Turnaround</h3>
+      <p>Same day or next day delivery for most services. Time pe delivery guaranteed.</p>
+    </div>
+    <div class="why-card fade-up">
+      <div class="why-icon">🔒</div>
+      <h3>Data Security</h3>
+      <p>Aapka financial data 100% safe aur confidential. Privacy guaranteed.</p>
+    </div>
+    <div class="why-card fade-up">
+      <div class="why-icon">💰</div>
+      <h3>Affordable Pricing</h3>
+      <p>Professional services at budget-friendly rates. No hidden charges.</p>
+    </div>
+    <div class="why-card fade-up">
+      <div class="why-icon">📞</div>
+      <h3>Always Available</h3>
+      <p>WhatsApp, Call ya Email – hum hamesha available hain aapke liye.</p>
+    </div>
+    <div class="why-card fade-up">
+      <div class="why-icon">📜</div>
+      <h3>Expert Team</h3>
+      <p>Certified accountants with 8+ years of industry experience.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="text-center">
+    <span class="section-tag">How It Works</span>
+    <h2 class="section-title">Kaam Kaise Hota Hai?</h2>
+    <p class="section-sub">Simple 4-step process to get your accounting done professionally.</p>
+  </div>
+  <div class="process-steps">
+    <div class="step fade-up">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h3>Contact Karein</h3>
+        <p>Form bharo ya WhatsApp/call karo. Apni requirement batao – free consultation milegi.</p>
+      </div>
+    </div>
+    <div class="step fade-up">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h3>Documents Share Karein</h3>
+        <p>WhatsApp ya email ke through apne documents securely share karein. All formats accepted.</p>
+      </div>
+    </div>
+    <div class="step fade-up">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h3>Kaam Hoga</h3>
+        <p>Hamare experts apna kaam shuru karenge with full accuracy and compliance.</p>
+      </div>
+    </div>
+    <div class="step fade-up">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h3>Delivery & Support</h3>
+        <p>Final reports/filings aapko time par milenge. Baad mein bhi query ho toh hum available hain.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="text-center">
+    <span class="section-tag">Client Reviews</span>
+    <h2 class="section-title">Clients Kya Kehte Hain</h2>
+    <p class="section-sub">Real feedback from our satisfied clients across India.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card fade-up">
+      <div class="stars">★★★★★</div>
+      <p>"GST filing bahut smooth thi. Time pe ki aur sab kuch ek dum accurate. Bohot khush hoon service se!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">R</div>
+        <div><div class="testi-name">Rajesh Kumar</div><div class="testi-role">Textile Business, Surat</div></div>
+      </div>
+    </div>
+    <div class="testi-card fade-up">
+      <div class="stars">★★★★★</div>
+      <p>"RA Billing mein bahut help mili. Construction project ka poora billing record sahi se manage kiya. Highly recommended!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">A</div>
+        <div><div class="testi-name">Amit Sharma</div><div class="testi-role">Construction Contractor, Delhi</div></div>
+      </div>
+    </div>
+    <div class="testi-card fade-up">
+      <div class="stars">★★★★★</div>
+      <p>"E-Way Bill aur billing dono kaam same day complete kiye. Affordable rates aur professional service – best team!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">P</div>
+        <div><div class="testi-name">Priya Patel</div><div class="testi-role">Trading Company, Ahmedabad</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="text-center">
+    <span class="section-tag">Contact Us</span>
+    <h2 class="section-title">Aaj Hi Contact Karein</h2>
+    <p class="section-sub">Free consultation ke liye abhi contact karein. Hum 24 ghante ke andar reply karenge.</p>
+  </div>
+
+  <div class="contact-wrap">
+    <div class="contact-info fade-up">
+      <h2>Baat Karte Hain! 👋</h2>
+      <p>Aapki accounting aur tax problems ka solution hamare paas hai. Seedha contact karein ya form bharo – hum jaldi reply karenge.</p>
+
+      <div class="info-item">
+        <div class="info-icon"><i class="fas fa-phone"></i></div>
+        <div>
+          <div class="info-label">Call / WhatsApp</div>
+          <div class="info-val">+91 87509 16925</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+        <div>
+          <div class="info-label">Email</div>
+          <div class="info-val">deepakpaledu@gmail.com</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div>
+          <div class="info-label">Office</div>
+          <div class="info-val">Plot No. 235/2, Surya Vihar Part 3, Faridabad</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon"><i class="fas fa-clock"></i></div>
+        <div>
+          <div class="info-label">Working Hours</div>
+          <div class="info-val">Mon–Sat: 9:00 AM – 8:00 PM</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form fade-up">
+      <h3>📩 Send Us a Message</h3>
+      <form id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name *</label>
+            <input type="text" placeholder="Aapka naam" required/>
+          </div>
+          <div class="form-group">
+            <label>Phone / WhatsApp *</label>
+            <input type="tel" placeholder="+91 XXXXX XXXXX" required/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="aapka@email.com"/>
+        </div>
+        <div class="form-group">
+          <label>Service Required *</label>
+          <select required>
+            <option value="">-- Service Select Karein --</option>
+            <option>GST Registration & Filing</option>
+            <option>Excel Accounting</option>
+            <option>Billing Services</option>
+            <option>E-Way Bill</option>
+            <option>Project Management Report</option>
+            <option>RA Billing</option>
+            <option>Multiple Services</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Your Message</label>
+          <textarea placeholder="Apni requirement detail mein batayein..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> &nbsp;Send Message</button>
+        <div class="success-msg" id="successMsg">✅ Message bhej diya gaya! Hum 24 ghante mein contact karenge.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">
+        <div class="logo-icon">₹</div>
+        <span class="logo-text">Pro<span style="color:#60a5fa">Accounts</span></span>
+      </div>
+      <p>Aapka trusted accounting partner. Professional, accurate, aur affordable financial services for businesses across India.</p>
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">GST Services</a></li>
+        <li><a href="#services">Excel Accounting</a></li>
+        <li><a href="#services">Billing</a></li>
+        <li><a href="#services">E-Way Bill</a></li>
+        <li><a href="#services">Project Report</a></li>
+        <li><a href="#services">RA Billing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#why">Why Choose Us</a></li>
+        <li><a href="#process">How It Works</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+918750916925">📞 +91 87509 16925</a></li>
+        <li><a href="mailto:deepakpaledu@gmail.com">✉ deepakpaledu@gmail.com</a></li>
+        <li><a href="#">📍 Plot No. 235/2, Surya Vihar Part 3, Faridabad</a></li>
+        <li><a href="#">🕐 Mon-Sat 9AM-8PM</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 ProAccounts. All rights reserved. | Made with ❤️ for Indian Businesses</p>
+    <p>GST | Accounting | Billing | E-Way Bill</p>
+  </div>
+</footer>
+
+<!-- WhatsApp Float Button -->
+<a href="https://wa.me/918750916925?text=Hello,%20I%20need%20accounting%20services." class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+  // Scroll animation
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+  },{threshold:0.12});
+  document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+  // Form submit
+  function handleSubmit(e){
+    e.preventDefault();
+    document.getElementById('successMsg').style.display='block';
+    e.target.reset();
+  }
+
+  // Mobile menu toggle
+  function toggleMenu(){
+    const nl = document.querySelector('.nav-links');
+    const nc = document.querySelector('.nav-cta');
+    if(nl.style.display==='flex'){
+      nl.style.display='';nc.style.display='';
+    } else {
+      nl.style.cssText='display:flex;flex-direction:column;position:absolute;top:70px;left:0;right:0;background:#fff;padding:20px 5%;box-shadow:0 10px 30px rgba(0,0,0,.1);gap:16px;';
+      nc.style.cssText='display:block;margin:10px 5% 20px;';
+    }
+  }
+
+  // Active nav on scroll
+  window.addEventListener('scroll',()=>{
+    const nav = document.querySelector('nav');
+    nav.style.boxShadow = window.scrollY>20 ? '0 4px 30px rgba(0,0,0,0.12)' : '0 2px 20px rgba(0,0,0,0.08)';
+  });
+</script>
+</body>
+</html>
